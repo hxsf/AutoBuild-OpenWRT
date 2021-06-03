@@ -123,22 +123,22 @@ jobs:
       with:
         name: openwrt-x86-64-generic-image-efi.iso
         path: /home/runner/openwrt/dist/openwrt-x86-64-generic-image-efi.iso
-Cleanup-Old-Artifacts:
-  needs: [Build_x86_64]
-  runs-on: ubuntu-18.04
-  steps:
-  - name: Cleanup Old Action Artifacts
-    uses: kolpav/purge-artifacts-action@v1
-    with:
-      token: ${{ github.token }}
-      expire-in: 7d
-Cleanup-Workflow-Runs:
-  needs: Cleanup-Old-Artifacts
-  runs-on: ubuntu-18.04
-  steps:
-    - name: Cleanup Workflow Runs
-      uses: GitRML/delete-workflow-runs@v1.2.1
+  Cleanup-Old-Artifacts:
+    needs: [Build_x86_64]
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Cleanup Old Action Artifacts
+      uses: kolpav/purge-artifacts-action@v1
       with:
         token: ${{ github.token }}
-        repository: ${{ github.repository }}
-        retain_days: 7   
+        expire-in: 7d
+  Cleanup-Workflow-Runs:
+    needs: Cleanup-Old-Artifacts
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Cleanup Workflow Runs
+        uses: GitRML/delete-workflow-runs@v1.2.1
+        with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          retain_days: 7   
