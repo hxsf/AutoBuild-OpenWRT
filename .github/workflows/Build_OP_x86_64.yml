@@ -61,7 +61,7 @@ jobs:
         cp -f "${GITHUB_WORKSPACE}/configs/x86_64.config" ".config"
         chmod +x ./customize.sh && ./customize.sh
         make defconfig
-        make -j1 V=s
+        make -j$[$(nproc)+1]
 
     - name: Prepare Files
       run: |
