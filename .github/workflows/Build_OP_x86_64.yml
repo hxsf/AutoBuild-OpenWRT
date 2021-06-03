@@ -68,7 +68,7 @@ jobs:
       run: |
         cd "/home/runner/openwrt"
         mkdir -p /home/runner/openwrt/dist
-        cp ./bin/targets/x86/64/* /home/runner/openwrt/dist/
+        cp ./bin/targets/x86/64/openwrt-x86-64-* /home/runner/openwrt/dist/
         ls -al /home/runner/openwrt/dist/
     - name: Prepare Release Zip File
       id: assemble_artifact
